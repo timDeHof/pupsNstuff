@@ -11,6 +11,7 @@ const { puppies } = require('./seedData')
 const rebuildDb = async () => {
   client.connect()
   try {
+    console.log(client)
   } catch (error) {
     throw error
   } finally {
