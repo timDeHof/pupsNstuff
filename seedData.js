@@ -9,13 +9,10 @@ const puppies = [
 ]
 
 const owners = [
-  { name: 'Maureen Biologist', email: 'maury@gmail.com', age: 75 },
-  { name: 'Teri Dactyl', email: 'pterasoar@gmail.com', age: 65000000 },
-  { name: 'Aida Bug', email: 'abugslyfe@gmail.com', age: 55 },
-  { name: 'Allie Grater', email: 'youarethefather@gmail.com', age: 32 },
-  { name: 'Oscar Nommanee', email: 'grouch@gmail.com', age: 3 },
-  { name: 'Mary Krismass', email: 'noel@gmail.com', age: 2022 },
-  { name: 'Saul Goodmate', email: 'downunderbruther@gmail.com', age: 24 },
+  { name: 'Maureen Biologist' },
+  { name: 'Teri Dactyl' },
+  { name: 'Aida Bug' },
+  ,
 ]
 
 module.exports = { puppies, owners }

@@ -1,13 +1,13 @@
 const client = require('../client')
 
 const createOwner = async (owner) => {
-  const { name, email, age } = owner
+  const { name } = owner
   await client.query(
     `
-        INSERT INTO owners (name, email, age)
-        VALUES ($1, $2, $3)
+        INSERT INTO owners (name)
+        VALUES ($1)
     `,
-    [name, email, age]
+    [name]
   )
 }
 
