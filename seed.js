@@ -32,13 +32,6 @@ const createTables = async () => {
         age INTEGER
       )
     `)
-  console.log(`...creating puppies_owners`)
-  await client.query(`
-        CREATE TABLE puppies_owners (
-          "puppyId" INTEGER REFERENCES puppies(id),
-          "ownerId" INTEGER REFERENCES owners(id)
-        )
-    `)
 }
 // Seed our Data
 const seedDb = async () => {
