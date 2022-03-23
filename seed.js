@@ -13,7 +13,16 @@ const dropTables = async () => {
 }
 // Create Tables
 const createTables = async () => {
+  console.log(`...creating owners table`)
+  await client.query(`
+      CREATE TABLE owners (
+        id SERIAL PRIMARY KEY,
+        name VARCHAR (255) NOT NULL
+      )
+    `)
+
   console.log('...creating puppies tables')
+  // We need to add a reference to a puppy's owner!
   await client.query(`
     CREATE TABLE puppies (
         id SERIAL PRIMARY KEY,
@@ -23,25 +32,16 @@ const createTables = async () => {
         age INTEGER
     )
     `)
-  console.log(`...creating owners table`)
-  await client.query(`
-      CREATE TABLE owners (
-        id SERIAL PRIMARY KEY,
-        name VARCHAR (255) NOT NULL,
-        email VARCHAR (255) UNIQUE NOT NULL,
-        age INTEGER
-      )
-    `)
 }
 // Seed our Data
 const seedDb = async () => {
-  console.log('...seeding puppies')
-  for (const puppy of puppies) {
-    await createPuppy(puppy)
-  }
   console.log(`...seeding owners`)
   for (const owner of owners) {
     await createOwner(owner)
+  }
+  console.log('...seeding puppies')
+  for (const puppy of puppies) {
+    await createPuppy(puppy)
   }
 }
 
