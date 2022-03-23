@@ -13,7 +13,7 @@ const rebuildDb = async () => {
   try {
     console.log(client)
   } catch (error) {
-    throw error
+    console.error(error)
   } finally {
     client.end()
   }
