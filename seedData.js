@@ -12,7 +12,6 @@ const owners = [
   { name: 'Maureen Biologist' },
   { name: 'Teri Dactyl' },
   { name: 'Aida Bug' },
-  ,
 ]
 
 module.exports = { puppies, owners }
