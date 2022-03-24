@@ -1,12 +1,14 @@
 const client = require('./client')
 const { createPuppy, getPuppies } = require('./adapters/puppies')
-const { puppies, owners } = require('./seedData')
+const { puppies, owners, tricks } = require('./seedData')
 const { createOwner, getOwners } = require('./adapters/owners')
+const { createTrick, getTricks } = require('./adapters/tricks')
 
 // Drop Tables
 const dropTables = async () => {
   console.log('...dropping tables')
   await client.query(`
+      DROP TABLE IF EXISTS tricks;
       DROP TABLE IF EXISTS puppies;
       DROP TABLE IF EXISTS owners;
     `)
@@ -23,14 +25,23 @@ const createTables = async () => {
 
   console.log('...creating puppies tables')
   await client.query(`
-    CREATE TABLE puppies (
-        id SERIAL PRIMARY KEY,
-        name VARCHAR (255) NOT NULL,
-        email VARCHAR (255) UNIQUE NOT NULL,
-        "isCute" BOOLEAN DEFAULT true,
-        age INTEGER,
+      CREATE TABLE puppies (
+          id SERIAL PRIMARY KEY,
+          name VARCHAR (255) NOT NULL,
+          email VARCHAR (255) UNIQUE NOT NULL,
+          "isCute" BOOLEAN DEFAULT true,
+          age INTEGER,
+          "ownerId" INTEGER REFERENCES owners(id)
     );
     `)
+
+  console.log(`...creating tricks table`)
+  await client.query(`
+      CREATE TABLE tricks (
+        id SERIAL PRIMARY KEY,
+        title VARCHAR
+      )
+  `)
 }
 // Seed our Data
 const seedDb = async () => {
@@ -42,6 +53,11 @@ const seedDb = async () => {
   for (const puppy of puppies) {
     await createPuppy(puppy)
   }
+
+  console.log(`...seeding tricks`)
+  for (const trick of tricks) {
+    await createTrick(trick)
+  }
 }
 
 const rebuildDb = async () => {
@@ -52,8 +68,10 @@ const rebuildDb = async () => {
     await seedDb()
     const puppies = await getPuppies()
     const owners = await getOwners()
-    console.log('Puppies:', puppies)
-    console.log('Owners:', owners)
+    const tricks = await getTricks()
+    // console.log('Puppies:', puppies)
+    // console.log('Owners:', owners)
+    // console.log('Tricks:', tricks)
   } catch (error) {
     console.error(error)
   } finally {

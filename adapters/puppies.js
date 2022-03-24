@@ -16,7 +16,6 @@ const getPuppies = async () => {
   const { rows: puppies } = await client.query(`
         SELECT * FROM puppies
     `)
-  delete puppies[0].password
   return puppies
 }
 
