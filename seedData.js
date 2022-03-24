@@ -46,4 +46,10 @@ const tricks = [
   { title: 'ride motorcycle' },
 ]
 
-module.exports = { puppies, owners, tricks }
+const puppies_tricks = [
+  { puppy_id: 1, trick_id: 2 },
+  { puppy_id: 1, trick_id: 3 },
+  { puppy_id: 3, trick_id: 1 },
+]
+
+module.exports = { puppies, owners, tricks, puppies_tricks }
