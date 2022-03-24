@@ -7,8 +7,8 @@ const { createOwner, getOwners } = require('./adapters/owners')
 const dropTables = async () => {
   console.log('...dropping tables')
   await client.query(`
-    DROP TABLE IF EXISTS puppies;
-    DROP TABLE IF EXISTS owners;
+      DROP TABLE IF EXISTS puppies;
+      DROP TABLE IF EXISTS owners;
     `)
 }
 // Create Tables
@@ -22,15 +22,14 @@ const createTables = async () => {
     `)
 
   console.log('...creating puppies tables')
-  // We need to add a reference to a puppy's owner!
   await client.query(`
     CREATE TABLE puppies (
         id SERIAL PRIMARY KEY,
         name VARCHAR (255) NOT NULL,
         email VARCHAR (255) UNIQUE NOT NULL,
         "isCute" BOOLEAN DEFAULT true,
-        age INTEGER
-    )
+        age INTEGER,
+    );
     `)
 }
 // Seed our Data
