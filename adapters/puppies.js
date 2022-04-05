@@ -5,8 +5,8 @@ const createPuppy = async (puppy) => {
   const { name, email, age, ownerId } = puppy
   await client.query(
     `
-  INSERT INTO puppies (name, email, age, "ownerId")
-  VALUES ($1, $2, $3, $4)
+    INSERT INTO puppies (name, email, age, "ownerId")
+    VALUES ($1, $2, $3, $4)
   `,
     [name, email, age, ownerId]
   )
