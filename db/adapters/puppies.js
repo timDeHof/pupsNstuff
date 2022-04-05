@@ -13,10 +13,10 @@ const createPuppy = async (puppy) => {
 }
 
 const getPuppies = async () => {
-  const { rows: puppies } = await client.query(`
+  const { rows } = await client.query(`
         SELECT * FROM puppies
     `)
-  return puppies
+  return rows
 }
 
 module.exports = { createPuppy, getPuppies }
